@@ -22,17 +22,20 @@ public class EvenOddTree {
             helper(root, temp, i);
             levels.add(new ArrayList<>(temp));
         }
-        boolean evenFlag = false;
-        boolean oddFlag = false;
+
         for (int i=0; i<levels.size(); i++){
-            if (i % 2 == 0 && evenLevel(levels.get(i))){
-                evenFlag = true;
+            if(levels.get(i).size() == 1){
+                if((i % 2 == 0 && levels.get(i).get(0)%2==0) || (i % 2 != 0 && levels.get(i).get(0)%2!=0)){
+                    return false;
+                }
             }
-            if (i % 2 !=0 && oddLevel(levels.get(i))){
-                oddFlag = true;
+            else{
+                if ((i % 2 == 0 && !evenLevel(levels.get(i))) || (i % 2 !=0 && !oddLevel(levels.get(i)))){
+                    return false;
+                }
             }
         }
-        return evenFlag && oddFlag;
+        return true;
     }
     private int height(TreeNode root){
         if (root == null){
@@ -53,9 +56,9 @@ public class EvenOddTree {
         }
     }
     private boolean evenLevel(List<Integer> list){
-        int i = 0;
-        while (i < list.size()-1){
-            if (list.get(i)>list.get(i+1) || list.get(i) % 2 == 0){
+        int i = 1;
+        while (i < list.size()){
+            if (list.get(i-1)>=list.get(i) || list.get(i) % 2 == 0){
                 return false;
             }
             i++;
@@ -64,9 +67,9 @@ public class EvenOddTree {
     }
 
     private boolean oddLevel(List<Integer> list){
-        int i = 0;
-        while (i < list.size()-1){
-            if (list.get(i)<list.get(i+1) || list.get(i) % 2 != 0){
+        int i = 1;
+        while (i < list.size()){
+            if (list.get(i-1)<=list.get(i) || list.get(i) % 2 != 0){
                 return false;
             }
             i++;
