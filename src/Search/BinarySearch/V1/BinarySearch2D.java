@@ -1,4 +1,4 @@
-package Search.BinarySearch;
+package Search.BinarySearch.V1;
 
 public class BinarySearch2D {
     public static void main(String[] args) {
