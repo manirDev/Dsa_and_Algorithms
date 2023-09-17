@@ -21,7 +21,7 @@ public class Search2DMatrix {
         //     }
         // }
         // return false;
-        /*******************Binary Search**********************/
+        /*******************Binary DSA_LearningProcess.Search**********************/
 
         int row = matrix.length;
         for(int i=0; i<row; i++){

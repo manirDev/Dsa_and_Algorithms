@@ -1,4 +1,4 @@
-package Arrays;
+package DSA_LearningProcess.Arrays;
 
 import java.util.ArrayList;
 import java.util.List;

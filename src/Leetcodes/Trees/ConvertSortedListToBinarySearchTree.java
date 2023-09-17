@@ -1,11 +1,6 @@
 package Leetcodes.Trees;
 
 import Leetcodes.DFS.TreeNode;
-import LinkedList.ListNode;
-import com.sun.source.tree.Tree;
-
-import java.awt.*;
-import java.util.List;
 
 public class ConvertSortedListToBinarySearchTree {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Search.BinarySearch.V2;
+package DSA_LearningProcess.Search.BinarySearch.V2;
 public class LinkedList {
     Node head;
     static class  Node{
@@ -23,7 +23,7 @@ public class LinkedList {
 
         printList(list);
         System.out.println();
-        System.out.println("BSA: " + helper(list, 8));
+        System.out.println("BSA: " + helper(list, 99));
     }
     private static LinkedList insert(LinkedList list, int data){
         Node node = new Node(data);

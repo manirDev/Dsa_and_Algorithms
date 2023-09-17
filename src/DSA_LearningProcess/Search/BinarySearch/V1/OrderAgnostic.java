@@ -1,4 +1,4 @@
-package Search.BinarySearch.V1;
+package DSA_LearningProcess.Search.BinarySearch.V1;
 
 public class OrderAgnostic {
     public static void main(String[] args) {

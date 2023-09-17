@@ -22,7 +22,7 @@ public class ThreeSum {
     public static void main(String[] args) {
         int[] nums = {-1,0,1,2,-1,-4};
         System.out.println(threeSum(nums));
-        //System.out.println(Arrays.toString(new List[]{threeSum(nums)}));
+        //System.out.println(DSA_LearningProcess.Arrays.toString(new List[]{threeSum(nums)}));
     }
 
     private static List<List<Integer>> threeSum(int[] nums){
