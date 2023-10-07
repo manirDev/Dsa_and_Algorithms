@@ -3,23 +3,23 @@ package LeetCode.bfs;
 import LeetCode.tree.TreeNode;
 
 import java.util.LinkedList;
-import java.util.Locale;
 import java.util.Queue;
 
-public class FindBottomLeftTreeValue {
+public class DeepestLeavesSum {
     public static void main(String[] args) {
         TreeNode root = new TreeNode( 1);
         root.left = new TreeNode(2);
         root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.left.left.left = new TreeNode(7);
         root.right = new TreeNode(3);
-        root.right.left = new TreeNode(5);
         root.right.right = new TreeNode(6);
-        root.right.left.right = new TreeNode(7);
-        int res =  findBottomLeftValueHelper(root);
+        root.right.right.right = new TreeNode(8);
+        int res = deepestLeavesSumHelper(root);
         System.out.println(res);
     }
 
-    private static int findBottomLeftValueHelper(TreeNode root) {
+    private static int deepestLeavesSumHelper(TreeNode root) {
         if (root == null){
             return 0;
         }
@@ -28,11 +28,10 @@ public class FindBottomLeftTreeValue {
         int res = 0;
         while (!dfsQueue.isEmpty()){
             int size = dfsQueue.size();
+            int tempSum = 0;
             for (int i=0; i<size; i++){
                 TreeNode currNode = dfsQueue.remove();
-                if (i == 0){
-                    res = currNode.val;
-                }
+                tempSum += currNode.val;
                 if (currNode.left != null){
                     dfsQueue.add(currNode.left);
                 }
@@ -40,6 +39,7 @@ public class FindBottomLeftTreeValue {
                     dfsQueue.add(currNode.right);
                 }
             }
+            res = tempSum;
         }
         return res;
     }

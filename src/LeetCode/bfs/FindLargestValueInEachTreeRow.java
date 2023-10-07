@@ -2,36 +2,37 @@ package LeetCode.bfs;
 
 import LeetCode.tree.TreeNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Locale;
+import java.util.List;
 import java.util.Queue;
 
-public class FindBottomLeftTreeValue {
+public class FindLargestValueInEachTreeRow {
     public static void main(String[] args) {
-        TreeNode root = new TreeNode( 1);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(4);
-        root.right = new TreeNode(3);
-        root.right.left = new TreeNode(5);
-        root.right.right = new TreeNode(6);
-        root.right.left.right = new TreeNode(7);
-        int res =  findBottomLeftValueHelper(root);
+        TreeNode root =  new TreeNode(1);
+        root.left = new TreeNode(3);
+        root.left.left= new TreeNode(5);
+        root.left.right = new TreeNode(3);
+        root.right = new TreeNode(2);
+        root.right.right = new TreeNode(9);
+        List<Integer> res = new ArrayList<>();
+        largestValuesHelper(root, res);
         System.out.println(res);
     }
 
-    private static int findBottomLeftValueHelper(TreeNode root) {
+    private static void largestValuesHelper(TreeNode root, List<Integer> res) {
         if (root == null){
-            return 0;
+            return;
         }
         Queue<TreeNode> dfsQueue = new LinkedList<>();
         dfsQueue.add(root);
-        int res = 0;
         while (!dfsQueue.isEmpty()){
             int size = dfsQueue.size();
+            int tempMax = Integer.MIN_VALUE;
             for (int i=0; i<size; i++){
                 TreeNode currNode = dfsQueue.remove();
-                if (i == 0){
-                    res = currNode.val;
+                if (currNode.val > tempMax){
+                    tempMax = currNode.val;
                 }
                 if (currNode.left != null){
                     dfsQueue.add(currNode.left);
@@ -40,7 +41,7 @@ public class FindBottomLeftTreeValue {
                     dfsQueue.add(currNode.right);
                 }
             }
+            res.add(tempMax);
         }
-        return res;
     }
 }
