@@ -3,6 +3,7 @@ package LeetCode.graph;
 import java.util.Arrays;
 
 public class AdjMatrix {
+
     public static void main(String[] args) {
         int m = 5;
         int n = 5;
