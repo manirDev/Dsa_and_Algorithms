@@ -3,28 +3,32 @@ package LeetCode.dp;
 import java.util.Stack;
 
 public class LongestValidParentheses {
-    static  int count = 0;
     public static void main(String[] args) {
-        String s = ")()())";
-        int res = longestValidParenthesesHelper(s.toCharArray(), 0, new Stack<>());
+        String s = "(()()()))";
+        int res = longestValidParenthesesHelper(s);
         System.out.println(res);
     }
 
-    private static int longestValidParenthesesHelper(char[] str, int idx, Stack<Character> stack) {
-        if (idx >= str.length){
-            return 0;
+    private static int longestValidParenthesesHelper(String str) {
+        Stack<Character> stack;
+        int longestValidParenthesesLength = 0;
+        for (int i=0; i<str.length(); i++){
+            stack = new Stack<>();
+            for (int j=i; j<str.length(); j++){
+                if (stack.isEmpty() && str.charAt(j)== ')'){
+                    break;
+                }
+                if (str.charAt(j) == '('){
+                    stack.push(str.charAt(j));
+                }
+                else {
+                    stack.pop();
+                    if (stack.isEmpty()){
+                        longestValidParenthesesLength = Math.max(longestValidParenthesesLength, j - i + 1);
+                    }
+                }
+            }
         }
-        if (!stack.isEmpty() && stack.peek() == '(' && str[idx] == ')'){
-            stack.pop();
-            return 1;
-        }
-        int pick = 0;
-        int nonPick = 0;
-        if (str[idx] == '('){
-            stack.push(str[idx]);
-            pick = longestValidParenthesesHelper(str, idx + 1, stack);
-        }
-        else nonPick = longestValidParenthesesHelper(str, idx + 1, stack);
-        return Math.max(pick, nonPick);
+        return longestValidParenthesesLength;
     }
 }
