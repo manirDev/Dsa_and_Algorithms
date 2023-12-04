@@ -8,9 +8,9 @@ import java.util.Set;
 public class ShortestPathInAGridWithObstaclesElimination {
     public static void main(String[] args) {
         int[][] grid = {
-                {0,1,1},
-                {1,1,1},
-                {1,0,0}
+                {0,1},
+                {1,1},
+                {0,0}
         };
         int k = 1;
         int[][] ans = new int[grid.length][grid[0].length];
@@ -45,7 +45,7 @@ public class ShortestPathInAGridWithObstaclesElimination {
                 if(grid[adjRow][adjCol] == 1){
                     currObs = obs  - 1;
                 }
-                if(grid[adjRow][adjCol] == 0){
+                if (grid[adjRow][adjCol] == 0){
                     currObs = obs;
                 }
                 if(currObs >= 0 && !visited.contains(adjRow + "" + adjCol + "" + currObs)){
