@@ -65,13 +65,7 @@ public class Test {
     }
     public static void main(String[] args) {
         int[][] grid = {{0, 0}, {1, 0}, {1, 0}, {1, 0}, {1, 0}, {1, 0}, {0, 0}, {0, 1}, {0, 1}, {0, 1}, {0, 0}, {1, 0}, {1, 0}, {0, 0}};
-//        int[][] grid = {
-//                {0,0,0},
-//                {1,1,0},
-//                {0,0,0},
-//                {0,1,1},
-//                {0,0,0}
-//        };
+        //obstacles to eliminate
         int k = 4;
         System.out.println(shortestPath(grid, k));
 
