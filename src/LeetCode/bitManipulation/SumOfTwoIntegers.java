@@ -9,19 +9,13 @@ public class SumOfTwoIntegers {
     }
 
     private static int getSumHelper(int a, int b) {
-        int res = 0;
-        if (a == 0) return b;
-        if (b == 0) return a;
-        int mask = 1;
-        for (int i=31; i>=0; i--){
-            int xorRes = a^b;
-            if ((a & mask) == 1 && (b & mask) == 1){
-
-            }
-            mask <<= 1;
-
+        while(b != 0){
+            int sum = (a ^ b);
+            int carry = (a & b) << 1;
+            a = sum;
+            b = carry;
         }
 
-        return 0;
+        return a;
     }
 }
