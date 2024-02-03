@@ -31,7 +31,7 @@ public class MinHeapTest {
         }
     }
 
-    public int peek(){
+    public int pop(){
         if (realSize < 1){
             System.out.println("Heap is empty");
             return minHeap[0];
@@ -86,7 +86,7 @@ public class MinHeapTest {
         minheap.add(4);
         minheap.add(5);
         System.out.println(minheap.toString());
-        System.out.println(minheap.peek());
+        System.out.println(minheap.pop());
         System.out.println(minheap.toString());
     }
 }

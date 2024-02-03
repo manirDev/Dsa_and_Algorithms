@@ -28,7 +28,7 @@ public class MaxHeap {
             parent = idx / 2;
         }
     }
-    public int peek(){
+    public int pop(){
         if (realSize < 1){
             return maxHeap[0];
         }
@@ -52,6 +52,9 @@ public class MaxHeap {
                     maxHeap[right] = temp;
                     idx = right;
                 }
+            }
+            else{
+                break;
             }
         }
         return toBeRemoved;
@@ -80,7 +83,7 @@ public class MaxHeap {
         maxHeap.add(1);
         maxHeap.add(4);
         System.out.println(maxHeap.toString());
-        System.out.println(maxHeap.peek());
+        System.out.println(maxHeap.pop());
         System.out.println(maxHeap.toString());
     }
 }
