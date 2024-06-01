@@ -17,16 +17,18 @@ public class ReconstructItinerary {
         buildGraph(graph, tickets);
         String source = "JFK";
         List<String> res = new ArrayList<>();
-        Set<String> visited = new HashSet<>();
-        findItineraryHelper(graph, res, source, visited);
+        findItineraryHelper(graph, res, source);
         System.out.println(res);
-        System.out.println(graph.toString());
     }
 
-    private static void findItineraryHelper(Graph<String> graph, List<String> res, String source, Set<String> visited) {
-        while (graph.map.get(source) != null || !graph.map.get(source).isEmpty()){
-            String adj = graph.map.get(source).remove(0);
-            findItineraryHelper(graph, res, adj, visited);
+    private static void findItineraryHelper(Graph<String> graph, List<String> res, String source) {
+        if (graph.map.get(source).size() > 0){
+            List<String> adjs = graph.map.get(source);
+            while(adjs.size() > 0){
+                String adj = adjs.remove(0);
+                findItineraryHelper(graph, res, adj);
+            }
+
         }
         res.add(0, source);
     }
