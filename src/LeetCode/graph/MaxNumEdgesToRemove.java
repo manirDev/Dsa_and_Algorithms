@@ -10,13 +10,13 @@ public class MaxNumEdgesToRemove {
             parent = new int[size];
             counter = size;
             for (int i = 0; i < size; i++) {
-                parent[i] = i + 1;
+                parent[i] = i;
             }
         }
 
         public int find(int v) {
-            while (v != parent[v-1]) {
-                v = parent[v-1];
+            while (v != parent[v]) {
+                v = parent[v];
             }
             return v;
         }
@@ -41,9 +41,9 @@ public class MaxNumEdgesToRemove {
         System.out.println(res);
     }
     private static int helper(int[][] edges, int n){
-        UnionFind type_one = new UnionFind(n);
-        UnionFind type_two = new UnionFind(n);
-        UnionFind type_three = new UnionFind(n);
+        UnionFind type_one = new UnionFind(n + 1);
+        UnionFind type_two = new UnionFind(n + 1);
+        UnionFind type_three = new UnionFind(n + 1);
         int res = 0;
 
         for (int i=0; i<edges.length; i++){
@@ -57,21 +57,26 @@ public class MaxNumEdgesToRemove {
                 type_one.union(edges[i][1], edges[i][2]);
             }
         }
-        mergeRoot(type_three, type_two, n);
+        System.out.println(Arrays.toString(type_three.parent));
+        res = mergeRoot(type_three, type_two, n);
+        System.out.println(res);
         mergeRoot(type_three, type_one, n);
         System.out.println(Arrays.toString(type_three.parent));
         return res;
     }
 
-    private static void mergeRoot(UnionFind u1, UnionFind u2, int n){
-        for (int i=0; i<n; i++){
-            int x = i + 1;
-            int type_three_root = u1.find(x);
-            int type_two_root = u2.find(x);
-            if (type_three_root == type_two_root || type_two_root == x){
+    private static int mergeRoot(UnionFind u1, UnionFind u2, int n){
+        int res = 0;
+        for (int i=1; i<=n; i++){
+            int type_three_root = u1.find(i);
+            int type_two_root = u2.find(i);
+            if (type_three_root == type_two_root || type_two_root == i){
                 continue;
             }
-            u1.union(type_three_root, type_two_root);
+            //u1.union(type_three_root, type_two_root);
+            u1.parent[type_three_root] = type_two_root;
+            res++;
         }
+        return res;
     }
 }
