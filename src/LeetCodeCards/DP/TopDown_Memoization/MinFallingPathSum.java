@@ -7,7 +7,7 @@ public class MinFallingPathSum {
         int res = Integer.MAX_VALUE;
         for (int i=0; i<grid.length; i++){
             res =  Math.min(res, helper(grid, 0, i, memo));
-        }
+         }
         System.out.println(res);
     }
     private static int helper(int[][] grid, int row, int col, int[][] memo){
