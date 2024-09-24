@@ -15,6 +15,9 @@ public class ExtraCharactersInAString {
         System.out.println(res);
     }
     private static int helper(String s, Set<String> dic, int start, Map<Integer, Integer> memo){
+        if (start == s.length()){
+            return 0;
+        }
         if (memo.containsKey(start)){
             return memo.get(start);
         }
