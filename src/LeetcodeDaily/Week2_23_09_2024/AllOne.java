@@ -6,33 +6,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AllOne {
-    private HashMap<String, Integer> allInOne;
+    private HashMap<String, Integer> freq;
     private Pair<String, Integer> maxKey;
-    private Pair<String, Integer> minnKey;
+    private Pair<String, Integer> minKey;
 
     public AllOne() {
-        allInOne = new HashMap<>();
+        freq = new HashMap<>();
         maxKey = new Pair<>("", Integer.MIN_VALUE);
-        minnKey = new Pair<>("", Integer.MAX_VALUE);
+        minKey = new Pair<>("", Integer.MAX_VALUE);
     }
 
     public void inc(String key) {
-        allInOne.put(key, allInOne.getOrDefault(key, 0) + 1);
+        freq.put(key, freq.getOrDefault(key, 0) + 1);
 
-        if (maxKey.getValue() <= allInOne.get(key)) {
+        if (maxKey.getValue() <= freq.get(key)) {
             maxKey.setKey(key);
-            maxKey.setValue(allInOne.get(key));
+            maxKey.setValue(freq.get(key));
         }
 
-        if (minnKey.getValue() >= allInOne.get(key)) {
-            minnKey.setKey(key);
-            minnKey.setValue(allInOne.get(key));
-        } else if (minnKey.getKey().equals(key)) {
+        if (minKey.getValue() >= freq.get(key)) {
+            minKey.setKey(key);
+            minKey.setValue(freq.get(key));
+        } else if (minKey.getKey().equals(key)) {
             int min = Integer.MAX_VALUE;
-            for (Map.Entry<String, Integer> entry : allInOne.entrySet()) {
+            for (Map.Entry<String, Integer> entry : freq.entrySet()) {
                 if (entry.getValue() < min) {
-                    minnKey.setKey(entry.getKey());
-                    minnKey.setValue(entry.getValue());
+                    minKey.setKey(entry.getKey());
+                    minKey.setValue(entry.getValue());
                     min = entry.getValue();
                 }
             }
@@ -40,21 +40,21 @@ public class AllOne {
     }
 
     public void dec(String key) {
-        if (allInOne.containsKey(key)) {
-            allInOne.put(key, allInOne.get(key) - 1);
-            if (allInOne.get(key) == 0) {
-                allInOne.remove(key);
+        if (freq.containsKey(key)) {
+            freq.put(key, freq.get(key) - 1);
+            if (freq.get(key) == 0) {
+                freq.remove(key);
             }
 
-            if (allInOne.isEmpty()) {
+            if (freq.isEmpty()) {
                 maxKey.setKey("");
                 maxKey.setValue(Integer.MIN_VALUE);
-                minnKey.setKey("");
-                minnKey.setValue(Integer.MAX_VALUE);
+                minKey.setKey("");
+                minKey.setValue(Integer.MAX_VALUE);
             } else {
                 if (maxKey.getKey().equals(key)) {
                     int max = Integer.MIN_VALUE;
-                    for (Map.Entry<String, Integer> entry : allInOne.entrySet()) {
+                    for (Map.Entry<String, Integer> entry : freq.entrySet()) {
                         if (entry.getValue() > max) {
                             maxKey.setKey(entry.getKey());
                             maxKey.setValue(entry.getValue());
@@ -63,12 +63,12 @@ public class AllOne {
                     }
                 }
 
-                if (minnKey.getKey().equals(key)) {
+                if (minKey.getKey().equals(key)) {
                     int min = Integer.MAX_VALUE;
-                    for (Map.Entry<String, Integer> entry : allInOne.entrySet()) {
+                    for (Map.Entry<String, Integer> entry : freq.entrySet()) {
                         if (entry.getValue() < min) {
-                            minnKey.setKey(entry.getKey());
-                            minnKey.setValue(entry.getValue());
+                            minKey.setKey(entry.getKey());
+                            minKey.setValue(entry.getValue());
                             min = entry.getValue();
                         }
                     }
@@ -81,8 +81,8 @@ public class AllOne {
         return maxKey.getKey();
     }
 
-    public String getminnKey() {
-        return minnKey.getKey();
+    public String getMinKey() {
+        return minKey.getKey();
     }
 
     public static void main(String[] args) {
@@ -91,7 +91,7 @@ public class AllOne {
         obj.inc("key2");
         obj.dec("key1");
         System.out.println("Max Key: " + obj.getMaxKey());
-        System.out.println("minn Key: " + obj.getminnKey());
+        System.out.println("minn Key: " + obj.getMinKey());
     }
 }
 
